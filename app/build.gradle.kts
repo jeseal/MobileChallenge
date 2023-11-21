@@ -1,18 +1,20 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id(GradlePlugings.androidApplication)
+    id(GradlePlugings.kotlinAndroid)
+    kotlin(GradlePlugings.kaptPlugin)
+    id(GradlePlugings.hiltAndroid)
 }
 
 android {
-    namespace = "com.example.mobilechallenge"
-    compileSdk = 34
+    namespace = ProjectConfiguration.applicationId
+    compileSdk = ProjectConfiguration.compileSdk
 
     defaultConfig {
-        applicationId = "com.example.mobilechallenge"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = ProjectConfiguration.applicationId
+        minSdk = ProjectConfiguration.minSdk
+        targetSdk = ProjectConfiguration.targetSdk
+        versionCode = ProjectConfiguration.versionCode
+        versionName = ProjectConfiguration.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -21,20 +23,21 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -47,6 +50,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+}
+
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -55,6 +64,11 @@ dependencies {
     // modules
     implementation(project(":domain"))
     implementation(project(":data"))
+
+    // hilt
+    implementation(Deps.Hilt.android)
+    implementation(Deps.Hilt.hiltComposeNavigation)
+    kapt(Deps.Hilt.androidCompiler)
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
