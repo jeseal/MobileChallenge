@@ -33,9 +33,51 @@ object Deps {
         const val kotlinJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinJdkVersion"
     }
 
+    object Core {
+        // Versions
+        private const val coreKtxVersion = "1.12.0"
+        private const val lifecycleKtxVersion = "2.6.2"
+        private const val androidxJUnitVersion = "1.1.5"
+        private const val jUnitVersion = "4.13.2"
+        private const val espressoCoreVersion = "3.5.1"
+
+        // Dependencies
+        const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
+        const val lifecycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleKtxVersion"
+        const val espresso = "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+        const val jUnit = "junit:junit:$jUnitVersion"
+        const val androidxJunit = "androidx.test.ext:junit:$androidxJUnitVersion"
+
+    }
+
+    object Compose {
+        // versions
+        private const val activityComposeVersion = "1.8.1"
+        private const val composeVersion = "1.4.0"
+        //private const val composeViewModelVersion = "2.4.1"
+        private const val material3Version = "1.0.1"
+        //private const val navigationVersion = "2.5.3"
+        private const val composeBomVersion = "2023.03.00"
+
+        // dependencies
+        const val activity = "androidx.activity:activity-compose:$activityComposeVersion"
+        const val ui = "androidx.compose.ui:ui:$composeVersion"
+       const val graphics = "androidx.compose.ui:ui-graphics:$composeVersion"
+        const val uiTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
+        const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+        const val material3 = "androidx.compose.material3:material3:$material3Version"
+        const val jUnit4 = "androidx.compose.ui:ui-test-junit4:$composeVersion"
+        const val testManifest = "androidx.compose.ui:ui-test-manifest:$composeVersion"
+        //const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$composeViewModelVersion"
+        //const val composeNavigation = "androidx.navigation:navigation-compose:${navigationVersion}"
+        const val composeBom = "androidx.compose:compose-bom:${composeBomVersion}"
+    }
+
     object Hilt {
         const val android = "com.google.dagger:hilt-android:${CommonVersions.hiltVersion}"
-        const val androidCompiler = "com.google.dagger:hilt-android-compiler:${CommonVersions.hiltVersion}"
-        const val hiltComposeNavigation = "androidx.hilt:hilt-navigation-compose:${CommonVersions.hiltNavigationComposeVersion}"
+        const val androidCompiler =
+            "com.google.dagger:hilt-android-compiler:${CommonVersions.hiltVersion}"
+        const val hiltComposeNavigation =
+            "androidx.hilt:hilt-navigation-compose:${CommonVersions.hiltNavigationComposeVersion}"
     }
 }
