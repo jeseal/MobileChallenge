@@ -1,4 +1,4 @@
-package com.example.mobilechallenge.ui.theme
+package com.jeseal.mobilechallenge.ui.theme
 
 import android.app.Activity
 import android.os.Build

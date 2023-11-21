@@ -1,4 +1,4 @@
-package com.example.mobilechallenge.ui.theme
+package com.jeseal.mobilechallenge.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

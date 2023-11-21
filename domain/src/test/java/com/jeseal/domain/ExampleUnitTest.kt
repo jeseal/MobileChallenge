@@ -1,4 +1,4 @@
-package com.example.data
+package com.jeseal.domain
 
 import org.junit.Test
 

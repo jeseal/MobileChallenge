@@ -1,4 +1,4 @@
-package com.example.mobilechallenge
+package com.jeseal.mobilechallenge
 
 import org.junit.Test
 
