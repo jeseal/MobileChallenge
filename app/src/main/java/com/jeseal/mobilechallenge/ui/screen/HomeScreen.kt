@@ -29,9 +29,9 @@ import coil.compose.rememberImagePainter
 import com.jeseal.domain.model.Character
 
 @Composable
-fun CharactersScreen(
+fun HomeScreen(
     state: HomeViewModel.CharactersState,
-    onSelectCountry: (code: String?) -> Unit= {},
+    onSelectCharacter: (code: String?) -> Unit= {},
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         if(state.isLoading) {
@@ -47,7 +47,7 @@ fun CharactersScreen(
                         character = character,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { onSelectCountry(character?.name) }
+                            .clickable { onSelectCharacter(character?.name) }
                             .padding(16.dp)
                     )
                 }
