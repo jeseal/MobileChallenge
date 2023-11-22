@@ -1,9 +1,15 @@
 plugins {
     id(GradlePlugings.androidLibrary)
     id(GradlePlugings.kotlinAndroid)
+    id(GradlePlugings.apolloGraph3)
 
 }
 
+apollo {
+    service("service") {
+        packageName.set(ProjectConfiguration.applicationId)
+    }
+}
 android {
     namespace = "${ProjectConfiguration.applicationId}.${project.name}"
     println("namespace: ${namespace.orEmpty()}")
@@ -20,11 +26,17 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
         getByName("debug") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -45,6 +57,8 @@ dependencies {
     //implementation("androidx.appcompat:appcompat:1.6.1")
     //implementation("com.google.android.material:material:1.10.0")
 
+    //ApolloGraph
+    implementation(Deps.ApolloGraphQL.apolloGraph3)
     //testing
     testImplementation(Deps.Core.jUnit)
     androidTestImplementation(Deps.Core.androidxJunit)

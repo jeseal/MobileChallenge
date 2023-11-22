@@ -13,6 +13,7 @@ object CommonVersions {
     const val kotlinVersion = "1.8.10"
     const val hiltVersion = "2.44"
     const val hiltNavigationComposeVersion = "1.0.0"
+    const val apolloGraphVersion = "3.8.2"
 }
 
 object GradlePlugings {
@@ -22,6 +23,7 @@ object GradlePlugings {
     const val kotlinAndroid = "org.jetbrains.kotlin.android"
     const val hiltAndroid = "com.google.dagger.hilt.android"
     const val kaptPlugin = "kapt"
+    const val apolloGraph3 = "com.apollographql.apollo3"
 }
 
 object Deps {
@@ -50,24 +52,35 @@ object Deps {
 
     }
 
+    object ApolloGraphQL {
+            //version
+        private const val apolloGraph3Version = "3.8.2"
+
+        //dependencies
+        const val apolloGraph3 = "com.apollographql.apollo3:apollo-runtime:$apolloGraph3Version"
+    }
+
     object Compose {
         // versions
         private const val activityComposeVersion = "1.8.1"
         private const val composeVersion = "1.4.0"
+
         //private const val composeViewModelVersion = "2.4.1"
         private const val material3Version = "1.0.1"
+
         //private const val navigationVersion = "2.5.3"
         private const val composeBomVersion = "2023.03.00"
 
         // dependencies
         const val activity = "androidx.activity:activity-compose:$activityComposeVersion"
         const val ui = "androidx.compose.ui:ui:$composeVersion"
-       const val graphics = "androidx.compose.ui:ui-graphics:$composeVersion"
+        const val graphics = "androidx.compose.ui:ui-graphics:$composeVersion"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
         const val material3 = "androidx.compose.material3:material3:$material3Version"
         const val jUnit4 = "androidx.compose.ui:ui-test-junit4:$composeVersion"
         const val testManifest = "androidx.compose.ui:ui-test-manifest:$composeVersion"
+
         //const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$composeViewModelVersion"
         //const val composeNavigation = "androidx.navigation:navigation-compose:${navigationVersion}"
         const val composeBom = "androidx.compose:compose-bom:${composeBomVersion}"

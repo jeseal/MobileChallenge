@@ -4,4 +4,5 @@ plugins {
     id(GradlePlugings.kotlinAndroid) version CommonVersions.kotlinVersion apply false
     id(GradlePlugings.androidLibrary) version CommonVersions.androidLibraryVersion apply false
     id(GradlePlugings.hiltAndroid) version CommonVersions.hiltVersion apply false
+    id(GradlePlugings.apolloGraph3) version CommonVersions.apolloGraphVersion apply false
 }
