@@ -11,7 +11,7 @@ object ProjectConfiguration {
 object CommonVersions {
     const val androidLibraryVersion = "8.1.4"
     const val kotlinVersion = "1.8.10"
-    const val hiltVersion = "2.44"
+    const val hiltVersion = "2.48.1"
     const val hiltNavigationComposeVersion = "1.0.0"
     const val apolloGraphVersion = "3.8.2"
 }
@@ -53,7 +53,7 @@ object Deps {
     }
 
     object ApolloGraphQL {
-            //version
+        //version
         private const val apolloGraph3Version = "3.8.2"
 
         //dependencies
@@ -88,9 +88,7 @@ object Deps {
 
     object Hilt {
         const val android = "com.google.dagger:hilt-android:${CommonVersions.hiltVersion}"
-        const val androidCompiler =
-            "com.google.dagger:hilt-android-compiler:${CommonVersions.hiltVersion}"
-        const val hiltComposeNavigation =
-            "androidx.hilt:hilt-navigation-compose:${CommonVersions.hiltNavigationComposeVersion}"
+        const val androidCompiler = "com.google.dagger:hilt-android-compiler:${CommonVersions.hiltVersion}"
+        const val hiltComposeNavigation = "androidx.hilt:hilt-navigation-compose:${CommonVersions.hiltNavigationComposeVersion}"
     }
 }

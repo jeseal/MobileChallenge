@@ -2,6 +2,8 @@ plugins {
     id(GradlePlugings.androidLibrary)
     id(GradlePlugings.kotlinAndroid)
     id(GradlePlugings.apolloGraph3)
+    kotlin(GradlePlugings.kaptPlugin)
+    id(GradlePlugings.hiltAndroid)
 
 }
 
@@ -15,12 +17,18 @@ android {
     println("namespace: ${namespace.orEmpty()}")
     compileSdk = ProjectConfiguration.compileSdk
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         minSdk = ProjectConfiguration.minSdk
         targetSdk = ProjectConfiguration.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "BASE_URL", (project.properties["baseUrl"] ?: "").toString())
     }
 
     buildTypes {
@@ -46,6 +54,14 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    hilt {
+        enableAggregatingTask = true
+    }
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -56,6 +72,11 @@ dependencies {
     implementation(Deps.Core.coreKtx)
     //implementation("androidx.appcompat:appcompat:1.6.1")
     //implementation("com.google.android.material:material:1.10.0")
+
+    // hilt
+    implementation(Deps.Hilt.android)
+    implementation(Deps.Hilt.hiltComposeNavigation)
+    kapt(Deps.Hilt.androidCompiler)
 
     //ApolloGraph
     implementation(Deps.ApolloGraphQL.apolloGraph3)

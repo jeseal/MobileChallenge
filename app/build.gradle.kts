@@ -33,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -89,4 +89,10 @@ dependencies {
     androidTestImplementation(Deps.Compose.jUnit4)
     debugImplementation(Deps.Compose.uiTooling)
     debugImplementation(Deps.Compose.testManifest)
+
+    constraints {
+        implementation(Deps.Kotlin.kotlinJdk8) {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
 }
