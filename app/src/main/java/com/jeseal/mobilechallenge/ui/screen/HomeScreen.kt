@@ -31,7 +31,7 @@ import com.jeseal.domain.model.Character
 @Composable
 fun HomeScreen(
     state: HomeViewModel.CharactersState,
-    onSelectCharacter: (code: String?) -> Unit= {},
+    onNavigateToCharacterDetail: (character:Character) -> Unit= {},
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         if(state.isLoading) {
@@ -47,7 +47,9 @@ fun HomeScreen(
                         character = character,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { onSelectCharacter(character?.name) }
+                            .clickable {
+                                character?.let { onNavigateToCharacterDetail(it) }
+                            }
                             .padding(16.dp)
                     )
                 }

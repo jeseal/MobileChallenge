@@ -10,6 +10,6 @@ class GetCharactersUseCaseImp @Inject constructor(
     override suspend fun invoke(): List<Character?> {
         return characterRepository
             .getCharacters()
-            //.sortedBy { it?.name }
+            .sortedBy { it?.name }
     }
 }
