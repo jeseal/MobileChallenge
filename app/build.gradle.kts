@@ -74,6 +74,7 @@ dependencies {
     implementation(Deps.Compose.graphics)
     implementation(Deps.Compose.uiToolingPreview)
     implementation(Deps.Compose.material3)
+    implementation(Deps.Compose.coil)
 
     // hilt
     implementation(Deps.Hilt.android)

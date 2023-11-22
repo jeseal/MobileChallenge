@@ -64,7 +64,7 @@ object Deps {
         // versions
         private const val activityComposeVersion = "1.8.1"
         private const val composeVersion = "1.4.0"
-
+        private const val coilVersion = "2.2.0"
         //private const val composeViewModelVersion = "2.4.1"
         private const val material3Version = "1.0.1"
 
@@ -80,7 +80,7 @@ object Deps {
         const val material3 = "androidx.compose.material3:material3:$material3Version"
         const val jUnit4 = "androidx.compose.ui:ui-test-junit4:$composeVersion"
         const val testManifest = "androidx.compose.ui:ui-test-manifest:$composeVersion"
-
+        const val coil = "io.coil-kt:coil-compose:${coilVersion}"
         //const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$composeViewModelVersion"
         //const val composeNavigation = "androidx.navigation:navigation-compose:${navigationVersion}"
         const val composeBom = "androidx.compose:compose-bom:${composeBomVersion}"
