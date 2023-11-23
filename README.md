@@ -26,9 +26,18 @@ This Android Kotlin project is built using a multi-module Clean Architecture. It
 
 - **`data` Module**: Manages data-related tasks, such as repository implementations, data sources, and network-related code.
 
+  ## Screenshots
+
+   ![image](https://github.com/jeseal/MobileChallenge/assets/40834446/0056a760-43e0-49a6-98cb-9dffb2a3ab5a)
+
+  ![image](https://github.com/jeseal/MobileChallenge/assets/40834446/58b8a98a-f273-4aca-9fbe-8f15298000fb)
+
+
 ## Setup
 
 1. Clone the repository:
 
    ```bash
    git clone https://github.com/your-username/your-project.git
+
+
