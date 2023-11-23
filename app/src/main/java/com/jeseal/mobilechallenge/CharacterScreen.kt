@@ -1,5 +1,6 @@
 package com.jeseal.mobilechallenge
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -15,29 +16,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.jeseal.mobilechallenge.ui.screen.CharacterDetailScreen
 import com.jeseal.mobilechallenge.ui.screen.HomeScreen
 import com.jeseal.mobilechallenge.ui.screen.HomeViewModel
 
-enum class CharacterScreen() {
-    Characters,
-    CharacterDetail
+enum class CharacterScreen(@StringRes val title: Int) {
+    Characters(title = R.string.app_name),
+    CharacterDetail(title = R.string.character_detail)
 }
 
 
 @ExperimentalMaterial3Api
 @Composable
 fun CharacterAppBar(
-    canNavigateBack: Boolean, navigateUp: () -> Unit, modifier: Modifier = Modifier
+    currentScreen: CharacterScreen,
+    canNavigateBack: Boolean,
+    navigateUp: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    TopAppBar(title = { Text(stringResource(id = R.string.app_name)) },
+    TopAppBar(
+        title = { Text(stringResource(currentScreen.title)) },
         colors = mediumTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         ),
@@ -60,10 +65,15 @@ fun CharacterApp(
     viewModel: HomeViewModel = hiltViewModel(),
     navController: NavHostController = rememberNavController()
 ) {
-
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentScreen = CharacterScreen.valueOf(
+        backStackEntry?.destination?.route ?: CharacterScreen.Characters.name
+    )
     Scaffold(topBar = {
-        CharacterAppBar(canNavigateBack = false,
-            navigateUp = { /* TODO: implement back navigation */ })
+        CharacterAppBar(
+            currentScreen = currentScreen,
+            canNavigateBack = navController.previousBackStackEntry != null,
+            navigateUp = { navController.navigateUp() })
     }) { innerPadding ->
         val uiState by viewModel.state.collectAsState()
 
@@ -72,7 +82,9 @@ fun CharacterApp(
             startDestination = CharacterScreen.Characters.name,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(route = CharacterScreen.Characters.name) {
+            composable(
+                route = CharacterScreen.Characters.name
+            ) {
                 HomeScreen(
                     state = uiState,
                     onNavigateToCharacterDetail = {
@@ -81,7 +93,9 @@ fun CharacterApp(
                     }
                 )
             }
-            composable(route = CharacterScreen.CharacterDetail.name) {
+            composable(
+                route = CharacterScreen.CharacterDetail.name
+            ) {
                 val uiState by viewModel.state.collectAsState()
                 CharacterDetailScreen(uiState)
             }
