@@ -21,12 +21,24 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            _state.update {
+                it.copy(
+                    isLoading = true
+                )
+            }
+            _state.update {
+                it.copy(
+                    characters = getCharactersUseCase.invoke(),
+                    isLoading = false
+                )
+            }
+        }
+    }
+
+    fun setCharacter(character: Character) {
+        viewModelScope.launch {
             _state.update { it.copy(
-                isLoading = true
-            ) }
-            _state.update { it.copy(
-                characters = getCharactersUseCase.invoke(),
-                isLoading = false
+                selectedCharacter = character
             ) }
         }
     }
@@ -34,5 +46,6 @@ class HomeViewModel @Inject constructor(
     data class CharactersState(
         val characters: List<Character?> = emptyList(),
         val isLoading: Boolean = false,
+        val selectedCharacter: Character? = null
     )
 }

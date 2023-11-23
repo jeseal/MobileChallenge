@@ -1,5 +1,3 @@
-
-
 package com.jeseal.mobilechallenge
 
 import androidx.compose.foundation.layout.padding
@@ -28,7 +26,7 @@ import com.jeseal.mobilechallenge.ui.screen.CharacterDetailScreen
 import com.jeseal.mobilechallenge.ui.screen.HomeScreen
 import com.jeseal.mobilechallenge.ui.screen.HomeViewModel
 
-enum class CharacterScreen(){
+enum class CharacterScreen() {
     Characters,
     CharacterDetail
 }
@@ -59,7 +57,7 @@ fun CharacterAppBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterApp(
-    viewModel:HomeViewModel = hiltViewModel(),
+    viewModel: HomeViewModel = hiltViewModel(),
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -76,13 +74,16 @@ fun CharacterApp(
         ) {
             composable(route = CharacterScreen.Characters.name) {
                 HomeScreen(
-                   state = uiState,
-                    onSelectCharacter = {}
+                    state = uiState,
+                    onNavigateToCharacterDetail = {
+                        viewModel.setCharacter(it)
+                        navController.navigate(CharacterScreen.CharacterDetail.name)
+                    }
                 )
             }
             composable(route = CharacterScreen.CharacterDetail.name) {
-                CharacterDetailScreen(
-                )
+                val uiState by viewModel.state.collectAsState()
+                CharacterDetailScreen(uiState)
             }
         }
     }
