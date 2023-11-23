@@ -2,8 +2,10 @@ package com.jeseal.mobilechallenge.ui.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jeseal.domain.interactor.GetCharacterUseCase
 import com.jeseal.domain.interactor.GetCharactersUseCase
 import com.jeseal.domain.model.Character
+import com.jeseal.domain.model.DetailedCharacter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getCharactersUseCase: GetCharactersUseCase
+    private val getCharactersUseCase: GetCharactersUseCase,
+    private val getCharacterUseCase: GetCharacterUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CharactersState())
@@ -35,10 +38,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun setCharacter(character: Character) {
+    fun setCharacter(character: String?) {
         viewModelScope.launch {
             _state.update { it.copy(
-                selectedCharacter = character
+                selectedCharacter = getCharacterUseCase.invoke(character)
             ) }
         }
     }
@@ -46,6 +49,6 @@ class HomeViewModel @Inject constructor(
     data class CharactersState(
         val characters: List<Character?> = emptyList(),
         val isLoading: Boolean = false,
-        val selectedCharacter: Character? = null
+        val selectedCharacter: DetailedCharacter? = null
     )
 }

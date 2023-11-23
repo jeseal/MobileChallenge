@@ -30,7 +30,7 @@ fun CharacterDetailScreen(
         ) {
             Spacer(modifier = Modifier.height(16.dp))
             Image(
-                painter = rememberAsyncImagePainter(state?.selectedCharacter?.image),
+                painter = rememberAsyncImagePainter(state.selectedCharacter?.image),
                 contentDescription = null,
                 modifier = Modifier.width(300.dp)
             )
@@ -49,7 +49,7 @@ fun CharacterDetailScreen(
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
-            state.selectedCharacter?.gender?.let {
+            state.selectedCharacter?.location?.let {
                 Text(
                     text = it,
                     style = MaterialTheme.typography.headlineSmall

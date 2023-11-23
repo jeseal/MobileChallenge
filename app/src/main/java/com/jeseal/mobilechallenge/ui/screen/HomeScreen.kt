@@ -28,10 +28,10 @@ import com.jeseal.domain.model.Character
 @Composable
 fun HomeScreen(
     state: HomeViewModel.CharactersState,
-    onNavigateToCharacterDetail: (character:Character) -> Unit= {},
+    onNavigateToCharacterDetail: (character: String?) -> Unit = {},
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        if(state.isLoading) {
+        if (state.isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center)
             )
@@ -45,7 +45,7 @@ fun HomeScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                character?.let { onNavigateToCharacterDetail(it) }
+                                character?.let { onNavigateToCharacterDetail(it.id) }
                             }
                             .padding(16.dp)
                     )
@@ -75,7 +75,9 @@ private fun CharacterItem(
         )
         Spacer(modifier = Modifier.height(16.dp))
         Column(
-            modifier = Modifier.weight(1f).padding(16.dp)
+            modifier = Modifier
+                .weight(1f)
+                .padding(16.dp)
         ) {
             character?.name?.let { Text(text = it, style = MaterialTheme.typography.headlineSmall) }
         }

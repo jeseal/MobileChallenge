@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetCharacterUseCaseImp @Inject constructor(
     private val characterRepository: CharacterRepository
 ) : GetCharacterUseCase {
-    override suspend fun invoke(id: String): DetailedCharacter? {
-        return characterRepository.getCharacter(id)
+    override suspend fun invoke(id: String?): DetailedCharacter? {
+        return id?.let { characterRepository.getCharacter(it) }
     }
 }

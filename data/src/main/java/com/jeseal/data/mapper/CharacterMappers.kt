@@ -9,8 +9,6 @@ fun CharactersQuery.Result.toDomainCharacter(): Character {
     return Character(
         id = id,
         name = name,
-        species = species,
-        gender = gender,
         image = image
     )
 }
