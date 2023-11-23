@@ -82,8 +82,8 @@ fun CharacterApp(
                 )
             }
             composable(route = CharacterScreen.CharacterDetail.name) {
-                CharacterDetailScreen(
-                )
+                val uiState by viewModel.state.collectAsState()
+                CharacterDetailScreen(uiState)
             }
         }
     }
