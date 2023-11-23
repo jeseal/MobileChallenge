@@ -3,8 +3,6 @@ query Characters {
         results{
             id
             name
-            species
-            gender
             image
         }
     }

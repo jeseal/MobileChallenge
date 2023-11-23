@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MobileChallenge</string>
+    <string name="app_name">RickyAndMorty Characters</string>
+    <string name="back_button">Back</string>
+    <string name="character_detail">Character Detail</string>
 </resources>
